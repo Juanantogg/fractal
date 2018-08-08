@@ -1,0 +1,373 @@
+//--------variables---------
+primero = #012440
+segundo = #F8F8F8
+tercero = #00b2a6
+valor-retraso = 1 3 5 7 9
+
+//----------Mixins--------------
+sombras(n = 7px)
+  content ""
+  display: block
+  width 60%
+  height 10px
+  position absolute
+  bottom n
+  box-shadow 0 11px 10px grey
+  z-index -1
+
+sombra-before()
+  right 0
+  transform rotate(3deg) skewX(10deg)
+
+sombra-after()
+  left 0
+  transform rotate(-3deg) skewX(-10deg)
+
+retraso-animacion(x)
+  animation-delay x
+
+//---------Fuentes---------------
+@font-face
+  font-family 'iconos'
+  src  url('../fonts/icomoon.eot?2w6nnh')
+  src  url('../fonts/icomoon.eot?2w6nnh#iefix') format('embedded-opentype'),
+       url('../fonts/icomoon.ttf?2w6nnh') format('truetype'),
+       url('../fonts/icomoon.woff?2w6nnh') format('woff'),
+       url('../fonts/icomoon.svg?2w6nnh#icomoon') format('svg')
+
+*
+*:before
+*:after
+  box-sizing: border-box
+
+body
+  background segundo
+  padding 0
+  margin 0
+  font-size: 16px;
+  font-family: 'Lato', sans-serif
+
+.cabecera
+  background repeating-linear-gradient(45deg, transparent 0%, 15%,rgba(segundo,.1) 15%,15.1%,transparent 15.3%),
+             linear-gradient(-45deg, tercero 0%, primero 100%)
+  display flex
+  flex-direction column
+  align-items center
+  padding 10vh 2em 0
+  color segundo
+  text-align: center
+  box-shadow 0 0 10px black
+  position relative
+  margin-bottom 2em
+  height 95vh
+  &::before
+  &::after
+    sombras()
+
+  &::before
+    sombra-before()
+
+  &::after
+    sombra-after()
+
+  h1
+    font-weight 900
+    margin 5vh 0
+
+  p
+    margin 0
+    font-weight: 400
+
+.avatar
+  width 120px
+  height 220px
+  border 1px solid #00b2a6
+  border-radius 10px
+  display flex
+  flex-direction: column
+  overflow hidden
+
+.arriba
+  width 100%
+  height 25px
+  display: flex
+  justify-content center
+  align-items center
+  &::before
+    content ""
+    display: block
+    width 20px
+    height 1px
+    background tercero
+
+.centro
+  background url("../images/yo.jpg")
+  background-size cover
+  background-position center
+  height inherit
+  border-top 1px solid tercero
+  border-bottom 1px solid tercero
+
+.abajo
+  width 100%
+  height 30px
+  display: flex
+  justify-content center
+  align-items center
+  &::before
+    content ""
+    display: block
+    width 15px
+    height 15px
+    border 1px solid tercero
+    border-radius 50%
+
+.animacion
+  font-family: "iconos"
+  width 32px
+  height 64px
+  position relative
+  top 30px
+  overflow hidden
+  &::before
+    content "\e902"
+    font-size: 2em
+    font-weight: 900
+    position relative
+    animation 1s animacion infinite
+
+.detalle
+  background segundo
+  padding 0 .8em
+  display: flex
+  flex-direction: column
+  align-items center
+  position relative
+  margin-bottom 2em
+  &::before
+  &::after
+    sombras()
+
+  &::before
+    sombra-before()
+
+  &::after
+    sombra-after()
+
+  h2
+  h3
+  p
+    text-align: center
+    margin .5em
+
+  p
+    padding-bottom 1.5em
+
+.menu
+  width 100%
+  padding 0  1em
+  ul
+    padding 0
+    display: flex
+    justify-content: space-around
+
+  li
+     list-style none
+
+  a
+    display block
+    text-decoration none
+
+  img
+    width 40px
+
+.rayita
+  width 100px
+  height 2px
+  background lightgrey
+  margin .8em auto
+
+.logo
+  width 100%
+  img
+    width 70%
+    margin 0 auto
+    display:  block
+
+.habilidades
+  ul
+    padding  0 .5em .5em .5em
+    margin .8em .5em .5em
+    width 100%
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+  li
+    background linear-gradient(-45deg, primero 25%,tercero 25%, tercero 50%, primero 50%, primero 75%, tercero 75%, tercero)
+    background-size 50px 50px
+    width 80%
+    height 1em
+    overflow hidden
+    list-style none
+    border-radius .8em
+    border 2px solid primero
+    /*animation: 4s preload linear infinite*/
+    &::after
+      content ""
+      display: block
+      width 60%
+      height 1em
+      position relative
+      background segundo
+      z-index 5
+    &:nth-child(1)::after
+      left 80%
+    &:nth-child(3)::after
+      left 90%
+    &:nth-child(5)::after
+      left 50%
+    &:nth-child(7)::after
+      left 60%
+    &:nth-child(9)::after
+      left 70%
+
+.icono-lista
+  width 2em
+  height 2em
+  align-self: flex-start
+  position relative
+  top -1.5em
+  img
+    width 100%
+
+.formulario
+  display: flex
+  flex-direction column
+  align-items: center
+  padding-bottom 1.5em
+
+.formulario input,
+.formulario textarea
+  width 100%
+  padding .3em
+  border-radius .5em
+  margin .5em
+  border none
+  background rgba(211,211,211,.2)
+  box-shadow 0 0 2px primero
+  outline none
+  &:hover
+    background rgba(211,211,211,.5)
+    box-shadow 0 0 10px primero
+
+.pie
+  display: flex
+  flex-direction column
+  align-items: center
+  small
+    padding 1.5em
+
+.redes
+  width 100%
+  ul
+    width 70%
+    padding 0
+    margin 0 auto
+    display: flex
+    justify-content: space-around
+    list-style none
+    font-family: "iconos"
+    li
+      a
+        color grey
+        text-decoration none
+        font-size: 2em
+      &:nth-child(1)
+        a
+          &::before
+            content "\e906"
+      &:nth-child(2)
+        a
+          &::before
+            content "\e907"
+      &:nth-child(3)
+        a
+          &::before
+            content "\e909"
+      &:nth-child(4)
+        a
+          &::before
+            content "\e90a"
+
+@media (max-height 480px)
+  .cabecera
+    padding 1.5em 2em 0
+    h1
+      margin .5em 0
+
+  .animacion
+    top 9px
+
+@media (orientation landscape)
+  .cabecera
+    display: grid
+    grid-template-columns 3fr 1fr
+    grid-template-rows 4fr 1fr
+    &::before
+    &::after
+      sombras(10px)
+
+  .titular
+    grid-column 1 / 2
+    grid-row 1 / 2
+    padding-right 1.5em
+    position relative
+    top -15px
+
+  .avatar
+    grid-column 2 / 3
+    grid-row 1 /2
+
+  .animacion
+    grid-column 1 / 3
+    grid-row 2 / 3
+    margin 0 auto
+    top -30px
+
+  .contenido
+    flex-direction: row
+    .rayita
+      display: none
+    &:nth-child(1)
+    &:nth-child(3)
+    &:nth-child(5)
+      flex-direction: row-reverse
+
+  .logo
+    margin 1em
+    width auto
+    img
+      width 150px
+
+  .habilidades ul
+    padding: 0 3.5em 0.5em 3.5em;
+
+
+
+
+@keyframes animacion
+  0%
+    top 0%
+  40%
+    top 50%
+  60%
+    top 50%
+  100%
+    top 0%
+
+@keyframes preload
+    0%
+      background-position 0 0
+    100%
+      background-position 50px 50px
+
